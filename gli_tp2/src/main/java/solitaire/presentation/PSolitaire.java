@@ -76,25 +76,25 @@ public class PSolitaire extends JFrame {
 
 		this.addComponentListener(new ComponentListener() {
 
-			private final int MINHEIGHT = 835;
-			private final int MINWIDTH = 620;
+			private final int MINHEIGHT = 620;
+			private final int MINWIDTH = 835;
 
 			public void componentShown(ComponentEvent arg0) {
+
+			}
+
+			public void componentResized(ComponentEvent arg0) {
 				Dimension size = getSize();
 
 				if (size.height < MINHEIGHT) {
 					size.height = MINHEIGHT;
 				}
-				
+
 				if (size.width < MINWIDTH) {
 					size.width = MINWIDTH;
 				}
-				
+
 				setSize(size);
-			}
-
-			public void componentResized(ComponentEvent arg0) {
-
 			}
 
 			public void componentMoved(ComponentEvent arg0) {

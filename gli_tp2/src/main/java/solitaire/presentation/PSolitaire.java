@@ -21,12 +21,25 @@ import solitaire.controle.CSabot;
 import solitaire.controle.CSolitaire;
 import solitaire.controle.CTasDeCartesColores;
 
+
+/**
+ * 
+ *  la presentation de solitaire
+ *
+ */
 public class PSolitaire extends JFrame {
 
 	private static final long serialVersionUID = -8201490869683184236L;
 
 	private CSolitaire controle;
-
+	
+	/**
+	 * construction de solitaire
+	 * @param controle le controle solitaire
+	 * @param sabot le sabot
+	 * @param colonnes les colonnes
+	 * @param pilesColorees les tas de cartes colorées
+	 */
 	public PSolitaire(CSolitaire controle, Sabot sabot, Colonne[] colonnes,
 			TasDeCartesColorees[] pilesColorees) {
 
@@ -73,6 +86,10 @@ public class PSolitaire extends JFrame {
 			PColonne pcol = ((CColonne) colonnes[i]).getPresentation();
 			colonnesPanel.add(pcol);
 		}
+		
+		/**
+		 * ajouter le listener
+		 */
 
 		this.addComponentListener(new ComponentListener() {
 
@@ -106,7 +123,11 @@ public class PSolitaire extends JFrame {
 			}
 		});
 	}
-
+	
+	/**
+	 * 
+	 * @return le controle de solitaire
+	 */
 	public CSolitaire getControle() {
 		return controle;
 	}

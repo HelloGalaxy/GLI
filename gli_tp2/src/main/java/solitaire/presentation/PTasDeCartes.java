@@ -7,6 +7,12 @@ import javax.swing.JPanel;
 
 import solitaire.controle.CTasDeCartes;
 
+
+/**
+ * presentation de tas de cartes
+ * @author 14010158
+ *
+ */
 public class PTasDeCartes extends JPanel {
 
 	private static final long serialVersionUID = 3620486048135778533L;
@@ -20,7 +26,10 @@ public class PTasDeCartes extends JPanel {
 	private int dy;
 
 	// private int nbCarte;
-
+	/**
+	 * construction d'un tas de cartes
+	 * @param contorle le controle de tas de cartes
+	 */
 	public PTasDeCartes(CTasDeCartes contorle) {
 		init(contorle);
 	}
@@ -31,7 +40,11 @@ public class PTasDeCartes extends JPanel {
 		this.dx = dx;
 		this.dy = dy;
 	}
-
+	
+	/**
+	 * initialiser le tas de cartes
+	 * @param contorle le controle de tas de cartes
+	 */
 	private void init(CTasDeCartes contorle) {
 		this.controle = contorle;
 
@@ -59,6 +72,11 @@ public class PTasDeCartes extends JPanel {
 	public int getLastY() {
 		return lastY;
 	}
+	
+	/**
+	 * 
+	 * @return la taille
+	 */
 
 	public Dimension getControleSize() {
 
@@ -69,17 +87,29 @@ public class PTasDeCartes extends JPanel {
 
 		return size;
 	}
-
+	
+	/**
+	 * 
+	 * @return le controle tas de cartes
+	 */
 	public final CTasDeCartes getControle() {
 		return controle;
 	}
-
+	
+	/**
+	 * depiler la carte
+	 * @param pc la presentation de la carte
+	 */
 	public void depiler(PCarte pc) {
 		remove(pc);
 		lastX -= dx;
 		lastY -= dy;
 	}
-
+	
+	/**
+	 *  empiler la carte
+	 * @param pc la presentation de la carte
+	 */
 	public void empiler(PCarte pc) {
 		add(pc, 0);
 		pc.setLocation(lastX, lastY);

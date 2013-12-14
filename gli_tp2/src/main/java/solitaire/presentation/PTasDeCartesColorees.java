@@ -17,6 +17,11 @@ import javax.swing.JPanel;
 import solitaire.controle.CCarte;
 import solitaire.controle.CTasDeCartesColores;
 
+/**
+ * 
+ * la presentation de tas de cartes colorées
+ *
+ */
 public class PTasDeCartesColorees extends JPanel {
 
 	private static final long serialVersionUID = 3390303295175333340L;
@@ -24,7 +29,11 @@ public class PTasDeCartesColorees extends JPanel {
 
 	private DropTargetDropEvent theFinalEvent;
 	private DropTarget dt;
-
+	
+	/**
+	 * contruction PTasDeCartesColorees
+	 * @param contorle controle tas de cartes colorées 
+	 */
 	public PTasDeCartesColorees(CTasDeCartesColores contorle) {
 
 		this.controle = contorle;
@@ -35,23 +44,40 @@ public class PTasDeCartesColorees extends JPanel {
 		this.dt = new DropTarget(this, new MyDropTargetListener());
 		setBackground(Color.lightGray);
 	}
+	
+	/**
+	 * 
+	 * @return Tas de cartes colorées
+	 */
 
 	public final CTasDeCartesColores getControle() {
 		return controle;
 	}
-
+	
+	/**
+	 * 
+	 * @return la taille du controle
+	 */
 	public Dimension getControleSize() {
 
 		Dimension size = new Dimension(PCarte.largeur, PCarte.hauteur);
 
 		return size;
 	}
-
+	
+	/**
+	 * depiler la carte
+	 * @param pc presentation de la carte
+	 */
 	public void depiler(PCarte pc) {
 		remove(pc);
 		this.repaint();
 	}
-
+	
+	/**
+	 * empiler la carte
+	 * @param pc presentation de la carte
+	 */
 	public void empiler(PCarte pc) {
 		add(pc, 0);
 		pc.setLocation(0, 0);
@@ -86,7 +112,10 @@ public class PTasDeCartesColorees extends JPanel {
 				e1.printStackTrace();
 			}
 		}
-
+		
+		/**
+		 * quitter le drag
+		 */
 		public void dragExit(DropTargetEvent arg0) {
 			System.out.println("exit");
 			// controle.p2c_dragExit(pc.getControle());
@@ -113,7 +142,10 @@ public class PTasDeCartesColorees extends JPanel {
 		}
 
 	}
-
+	
+	/**
+	 * modifier la couleur
+	 */
 	public void c2p_ShowEmpilable() {
 		this.setBackground(Color.green);
 	}
@@ -125,12 +157,21 @@ public class PTasDeCartesColorees extends JPanel {
 	public void c2p_ShowNotre() {
 		repaint();
 	}
-
+	
+	/**
+	 * 
+	 * @param presentation presentation de la carte
+	 */
 	public void c2p_DropOK(PCarte presentation) {
 		theFinalEvent.acceptDrop(DnDConstants.ACTION_MOVE);
 		theFinalEvent.getDropTargetContext().dropComplete(true);
 	}
-
+	
+	/**
+	 * 
+	 * @param cc controle de la carte
+	 * @param presentation la presentation de tas de cartes colorées
+	 */
 	public void c2p_DropKO(CCarte cc, PTasDeCartesColorees presentation) {
 
 		// TODO

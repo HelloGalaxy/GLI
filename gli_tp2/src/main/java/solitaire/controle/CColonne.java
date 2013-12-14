@@ -9,6 +9,11 @@ import solitaire.application.Tas;
 import solitaire.application.Usine;
 import solitaire.presentation.PColonne;
 
+/**
+ * 
+ * controle de la colonne
+ *
+ */
 public class CColonne extends Colonne {
 
 	private PColonne p;
@@ -18,18 +23,30 @@ public class CColonne extends Colonne {
 	private boolean isTransTas = false;
 
 	private CSolitaire solitaire;
-
+	
+	/**
+	 * construction d'une colonne
+	 * @param nom Nom de la colonne
+	 * @param u usine permet de créer les composants(TasDeCartes,TasDeCartesAlternees)
+	 */
 	public CColonne(String nom, Usine u) {
 		super(nom, u);
 
 		p = new PColonne(this, ((CTasDeCartes) cachees).getPresentation(),
 				((CTasDeCartesAlternees) visibles).getPresentation());
 	}
-
+	
+	/**
+	 * 
+	 * @return presentation de la colonne
+	 */
 	public PColonne getPresentation() {
 		return p;
 	}
-
+	
+	/**
+	 * retourne la carte au sommet du tas de cartes cachées et la place sur le tas de cartes alternées
+	 */
 	public void retournerCarte() throws Exception {
 
 		super.retournerCarte();
@@ -38,11 +55,19 @@ public class CColonne extends Colonne {
 			p.desactiverRetournneCarte();
 		}
 	}
-
+	
+	/**
+	 * affecter le controle solitaire au objet courant
+	 * @param solitaire controle solitaire
+	 */
 	public void setSolitaire(CSolitaire solitaire) {
 		this.solitaire = solitaire;
 	}
-
+	
+	/**
+	 * recopie d'un tas de cartes dans le tas de cartes cachées de la colonne
+	 * @param Tas le tas de cartes à recopier
+	 */
 	public void setReserve(Tas tas) {
 
 		super.setReserve(tas);
@@ -51,7 +76,11 @@ public class CColonne extends Colonne {
 			p.desactiverRetournneCarte();
 		}
 	}
-
+	
+	/**
+	 * indique si un tas de cartes est empilable sur la colonne
+	 * @param Tas le tas de cartes à empiler 
+	 */
 	@Override
 	public boolean isEmpilable(Tas tas) {
 		Carte c = null;
@@ -69,9 +98,13 @@ public class CColonne extends Colonne {
 
 		return false;
 	}
-
+	
+	/**
+	 * lancement de drap and drop
+	 * @param c controle de la carte
+	 * @param ctas controle TasDeCartesAlternees
+	 */
 	public void p2c_debutDnD(CCarte c, CTasDeCartesAlternees ctas) {
-
 		// TODO:
 		System.out.println("DEBUT DND");
 
@@ -96,7 +129,12 @@ public class CColonne extends Colonne {
 			System.out.println(e);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param dropSuccess envoie true si le drop fonctionne bien
+	 * @throws Exception envoie une exception si le drop fonctionne pas
+	 */
 	public void p2c_dragDropEnd(boolean dropSuccess) throws Exception {
 		// TODO: dev
 		System.out.println("dropSuccess " + dropSuccess);
@@ -123,11 +161,19 @@ public class CColonne extends Colonne {
 
 		}
 	}
-
+	
+	/**
+	 * quitter le drag
+	 * @param cc controle de la carte
+	 */
 	public void p2c_dragExit(CCarte cc) {
 		p.c2p_ShowNotre();
 	}
-
+	
+	/**
+	 * 
+	 * @param cc controle de la carte
+	 */
 	public void p2c_drop(CCarte cc) {
 		if (isEmpilable(cc) || isVide()) {
 			empiler(cc);
@@ -137,7 +183,12 @@ public class CColonne extends Colonne {
 		}
 		p.c2p_ShowNotre();
 	}
-
+	
+	/**
+	 * 
+	 * @param cc TasDeCarteAternnées
+	 * @throws Exception envoyer une exception
+	 */
 	public void p2c_drop(CTasDeCartesAlternees cc) throws Exception {
 		if (isEmpilable(cc) || isVide()) {
 			List<Carte> ctas = new LinkedList<Carte>();
@@ -157,7 +208,11 @@ public class CColonne extends Colonne {
 		}
 		p.c2p_ShowNotre();
 	}
-
+	
+	/**
+	 * voir s'il reste des cartes cachées alors ShowEmpilable
+	 * @param cc controle de la carte
+	 */
 	public void p2c_dragEnter(CCarte cc) {
 		if (isEmpilable(cc)
 				|| (cachees.getNombre() >= 0 && visibles.getNombre() == 0)) {
@@ -166,7 +221,11 @@ public class CColonne extends Colonne {
 			p.c2p_ShowNonEmpilable();
 		}
 	}
-
+	
+	/**
+	 * voir s'il reste des cartes cachées alors ShowEmpilable
+	 * @param cc controle TasDeCartesAlternee
+	 */
 	public void p2c_dragEnter(CTasDeCartesAlternees cc) {
 		if (isEmpilable(cc)
 				|| (cachees.getNombre() >= 0 && visibles.getNombre() == 0)) {

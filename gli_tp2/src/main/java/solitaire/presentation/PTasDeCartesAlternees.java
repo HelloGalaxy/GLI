@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 
 import solitaire.controle.CTasDeCartesAlternees;
 
+/**
+ * 
+ * la presentation de tas de cartes alternées
+ *
+ */
 public class PTasDeCartesAlternees extends JPanel implements Transferable {
 
 	private static final long serialVersionUID = -7484120698933048433L;
@@ -22,7 +27,11 @@ public class PTasDeCartesAlternees extends JPanel implements Transferable {
 
 	private int dx;
 	private int dy;
-
+	
+	/**
+	 *  conctruction d'un tas de cartes alternées
+	 * @param contorle le controle de tas de cartes alternées
+	 */
 	public PTasDeCartesAlternees(CTasDeCartesAlternees contorle) {
 
 		this.controle = contorle;
@@ -52,7 +61,11 @@ public class PTasDeCartesAlternees extends JPanel implements Transferable {
 	public int getLastY() {
 		return lastY;
 	}
-
+	
+	/**
+	 * 
+	 * @return la taille du controle
+	 */
 	public Dimension getControleSize() {
 
 		int height = PCarte.hauteur + (controle.getNbCartes() - 1) * dy;
@@ -62,17 +75,30 @@ public class PTasDeCartesAlternees extends JPanel implements Transferable {
 
 		return size;
 	}
+	
+	/**
+	 * 
+	 * @return controle tas de cartes alternées
+	 */
 
 	public final CTasDeCartesAlternees getControle() {
 		return controle;
 	}
-
+	
+	/**
+	 * depiler la carte
+	 * @param pc la presentation de la carte
+	 */
 	public void depiler(PCarte pc) {
 		remove(pc);
 		lastX -= dx;
 		lastY -= dy;
 	}
-
+	
+	/**
+	 * empiler la carte
+	 * @param pc la presentation de la carte
+	 */
 	public void empiler(PCarte pc) {
 		add(pc, 0);
 		pc.setLocation(lastX, lastY);

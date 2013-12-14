@@ -11,6 +11,11 @@ import solitaire.application.Usine;
 import solitaire.controle.CCarte;
 import solitaire.controle.CTasDeCartesColores;
 
+/**
+ * 
+ * tester le tas de cartes colorées
+ *
+ */
 public class TasDeCartesColoreesTest {
 	public static void main(String args[]) {
 

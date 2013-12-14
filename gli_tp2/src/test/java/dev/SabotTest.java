@@ -13,6 +13,11 @@ import solitaire.controle.CTasDeCartes;
 import solitaire.controle.CUsine;
 import solitaire.presentation.PSabot;
 
+/**
+ * 
+ * tester le sabot
+ *
+ */
 public class SabotTest {
 	public static void main(String args[]) {
 

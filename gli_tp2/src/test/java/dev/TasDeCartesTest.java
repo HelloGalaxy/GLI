@@ -11,6 +11,11 @@ import solitaire.controle.CCarte;
 import solitaire.controle.CTasDeCartes;
 import solitaire.controle.CUsine;
 
+/**
+ * 
+ * tester le tas de cartes
+ *
+ */
 public class TasDeCartesTest {
 
 	public static void main(String args[]) {

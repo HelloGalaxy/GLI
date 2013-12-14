@@ -5,6 +5,10 @@ import solitaire.application.Tas;
 import solitaire.application.Usine;
 import solitaire.presentation.PSabot;
 
+/**
+ * Controle Sabot
+ *
+ */
 public class CSabot extends Sabot {
 
 	private PSabot p;
@@ -13,7 +17,13 @@ public class CSabot extends Sabot {
 	private CSolitaire solitaire;
 	
 	private CCarte tmpTransCarte;
-
+	
+	/**
+	 * contructeur de sabot
+	 * @param nom Nom de sabot
+	 * @param u usine à créer les composants(deux TasDeCartes)
+	 * 
+	 */
 	public CSabot(String nom, Usine u) {
 
 		super(nom, u);
@@ -24,22 +34,42 @@ public class CSabot extends Sabot {
 		this.nbGroupeCartes = 3;
 	}
 	
+	/**
+	 * affecter le controle solitaire au objet courant
+	 * @param solitaire controle solitaire
+	 */
 	public void setSolitaire(CSolitaire solitaire){
 		this.solitaire = solitaire;
 	}
-
+	
+	/**
+	 * 
+	 * @return presentation du sabot
+	 */
 	public PSabot getPresentation() {
 		return p;
 	}
-
+	
+	/**
+	 * 
+	 * @return le nombre de groupes Cartes
+	 */
 	public int getNbGroupeCartes() {
 		return nbGroupeCartes;
 	}
-
+	
+	/**
+	 * modifier l'attribut nbGroupeCartes
+	 * @param nbGroupeCartes nombre de groupes Cartes
+	 */
 	public void setNbGroupeCartes(int nbGroupeCartes) {
 		this.nbGroupeCartes = nbGroupeCartes;
 	}
-
+	
+	/**
+	 * recopie d'un tas de cartes dans le tas de cartes cachées de la colonne
+	 * @param Tas tasDeCartes
+	 */
 	public void setReserve(Tas t) {
 
 		super.setReserve(t);
@@ -50,10 +80,17 @@ public class CSabot extends Sabot {
 		}
 	}
 	
+	/**
+	 * deplacer la carte
+	 * @param c controle de la carte
+	 */
 	public void moveCarteToColorees(CCarte c) {
 		this.solitaire.moveCarteToColorees(c);
 	}
-
+	
+	/**
+	 * retourner une carte
+	 */
 	public void retournerCarte() throws Exception {
 		
 		super.retournerCarte();
@@ -65,7 +102,10 @@ public class CSabot extends Sabot {
 
 		p.repaint();
 	}
-
+	
+	/**
+	 * activer ou desactiver la carte ou bien le tasDeCarte retournées
+	 */
 	public void retourner() throws Exception {
 
 		super.retourner();
@@ -80,14 +120,21 @@ public class CSabot extends Sabot {
 
 		p.repaint();
 	}
-
+	
+	/**
+	 * dépile une carte du double tas
+	 */
 	public void depiler() throws Exception {
 		super.depiler();
 		if (!isRetournable()) {
 			p.desactiverRetourneTas();
 		}
 	}
-
+	
+	/**
+	 * le lancement du Drag and drop
+	 * @param c controle de la carte
+	 */
 	public void p2c_debutDnD(CCarte c) {
 		
 		// TODO:
@@ -109,7 +156,11 @@ public class CSabot extends Sabot {
 			System.out.println(e);
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param dropSuccess indique si le drop fonctionne bien
+	 */
 	public void p2c_dragDropEnd(boolean dropSuccess) {
 		if (!dropSuccess) {
 			empiler(tmpTransCarte);

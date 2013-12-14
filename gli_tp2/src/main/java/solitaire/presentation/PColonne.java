@@ -27,6 +27,11 @@ import solitaire.controle.CCarte;
 import solitaire.controle.CColonne;
 import solitaire.controle.CTasDeCartesAlternees;
 
+/**
+ * 
+ * presentation colonne
+ *
+ */
 public class PColonne extends JPanel {
 
 	private static final long serialVersionUID = -7531553579310128111L;
@@ -41,13 +46,19 @@ public class PColonne extends JPanel {
 
 	private DropTargetDropEvent theFinalEvent;
 	private DropTarget dt;
-
+	
+	/**
+	 * 
+	 * @param controle controle de la colonne
+	 * @param cachees  pesentation de tas de cartes cachées
+	 * @param pTasDeCartesAlternees presentation de tas de cartes alternées
+	 */
 	public PColonne(CColonne controle, PTasDeCartes cachees,
 			PTasDeCartesAlternees pTasDeCartesAlternees) {
 		super();
 
 		// this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+		
 		this.controle = controle;
 		this.cachees = cachees;
 		this.visibles = pTasDeCartesAlternees;
@@ -69,19 +80,34 @@ public class PColonne extends JPanel {
 		
 		this.setBackground(Color.lightGray);
 	}
-
+	
+	/**
+	 * 
+	 * @return le controle de la colonne
+	 */
 	public CColonne getControle() {
 		return this.controle;
 	}
-
+	
+	/**
+	 * 
+	 * @return les tas de cartes chachees
+	 */
 	public PTasDeCartes getCachees() {
 		return cachees;
 	}
-
+	
+	/**
+	 * 
+	 * @return les tas de cartes alternées
+	 */
 	public PTasDeCartesAlternees getVisibles() {
 		return visibles;
 	}
-
+	
+	/**
+	 * modifier la taille de la carte
+	 */
 	public void updateControlsSize() {
 		if (cachees != null && visibles != null) {
 
@@ -109,21 +135,20 @@ public class PColonne extends JPanel {
 			this.setPreferredSize(this.getSize());
 		}
 	}
-
+	
+	/**
+	 * appel la méthode updateControlsSize
+	 */
 	@Override
 	public void repaint() {
 		updateControlsSize();
 		super.repaint();
 	}
-
-	public void activerReourenneCarte() {
-
-	}
-
-	public void desactiverRetournneCarte() {
-
-	}
-
+	
+	/**
+	 * lancer Drag and drop
+	 * @param c controle carte
+	 */
 	public void c2p_debutDnDOK(CCarte c) {
 		// TODO:
 		System.out.println("BEGIN TO MOVE");
@@ -131,7 +156,11 @@ public class PColonne extends JPanel {
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop,
 				c.getPresentation(), myDSL);
 	}
-
+	
+	/**
+	 * lancer Drag and drop
+	 * @param ctas tas de cartes altérnées
+	 */
 	public void c2p_debutDnDOK(CTasDeCartesAlternees ctas) {
 		// TODO:
 		System.out.println("BEGIN TO MOVE");
@@ -139,11 +168,12 @@ public class PColonne extends JPanel {
 		ds.startDrag(theInitialEvent, DragSource.DefaultMoveDrop,
 				ctas.getPresentation(), myDSL);
 	}
-
-	public void c2p_debutDnDKO(CCarte c) {
-
-	}
-
+	
+	/**
+	 * 
+	 * retourner la carte
+	 *
+	 */
 	class MyDragSourceListener implements DragSourceListener {
 
 		public void dragDropEnd(DragSourceDropEvent e) {
@@ -238,7 +268,10 @@ public class PColonne extends JPanel {
 				e1.printStackTrace();
 			}
 		}
-
+		
+		/**
+		 * quitter le drag
+		 */
 		public void dragExit(DropTargetEvent arg0) {
 			System.out.println("exit");
 			// controle.p2c_dragExit(pc.getControle());
@@ -277,7 +310,10 @@ public class PColonne extends JPanel {
 		}
 
 	}
-
+	
+	/**
+	 * modifier la couleur
+	 */
 	public void c2p_ShowEmpilable() {
 		this.setBackground(Color.green);
 	}
@@ -310,6 +346,11 @@ public class PColonne extends JPanel {
 		// TODO
 		System.out.println("Final Event:" + theFinalEvent);
 		theFinalEvent.rejectDrop();
+	}
+
+	public void desactiverRetournneCarte() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

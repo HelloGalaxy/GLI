@@ -19,6 +19,11 @@ import javax.swing.JPanel;
 import solitaire.controle.CCarte;
 import solitaire.controle.CSabot;
 
+/**
+ * 
+ * la presentation du sabot
+ *
+ */
 public class PSabot extends JPanel {
 
 	private static final long serialVersionUID = 5119385230762345237L;
@@ -33,7 +38,13 @@ public class PSabot extends JPanel {
 	private DragSource ds;
 	private DragGestureEvent theInitialEvent;
 	private DragSourceListener myDSL;
-
+	
+	/**
+	 * contruction d'un sabot
+	 * @param controle le controle sabot
+	 * @param cachees les tas de cartes cachées
+	 * @param visibles les tas de cartes visibles
+	 */
 	public PSabot(CSabot controle, PTasDeCartes cachees, PTasDeCartes visibles) {
 
 		super();
@@ -64,7 +75,11 @@ public class PSabot extends JPanel {
 
 		activerRetourneCarte();
 	}
-
+	
+	/**
+	 * 
+	 * @return le controle sabot
+	 */
 	public CSabot getControle() {
 		return controle;
 	}
@@ -72,11 +87,18 @@ public class PSabot extends JPanel {
 	public PTasDeCartes getCachees() {
 		return cachees;
 	}
-
+	
+	/**
+	 * 
+	 * @return tas de cartes visivles
+	 */
 	public PTasDeCartes getVisibles() {
 		return visibles;
 	}
-
+	
+	/**
+	 * modifier la taille du controle
+	 */
 	public void updateControlsSize() {
 
 		if (visibles != null && cachees != null) {

@@ -14,6 +14,11 @@ import solitaire.controle.CTasDeCartesAlternees;
 import solitaire.controle.CUsine;
 import solitaire.presentation.PColonne;
 
+/**
+ * 
+ * tester les colonnes 
+ *
+ */
 public class ColonneTest {
 	public static void main(String args[]) {
 
